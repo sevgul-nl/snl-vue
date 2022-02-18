@@ -40,8 +40,8 @@ pipeline {
                 }
             }
         }
-        //stage('Run image') {
-            //sh runimage.txt
-        //}
+        stage('Run') {
+            sh docker run -d -p 8010:8010 --rm --name snl-vue sevgulnl/snl-vue
+        }
     }
 }
