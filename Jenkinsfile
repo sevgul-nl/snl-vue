@@ -40,8 +40,8 @@ pipeline {
                 }
             }
         }
-        stage('Run image') {
-            sh runimage.txt
-        }
+        //stage('Run image') {
+            //sh runimage.txt
+        //}
     }
 }
