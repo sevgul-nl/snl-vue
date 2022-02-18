@@ -32,8 +32,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh 'docker container inspect sevgulnl/snl-vue && docker container prune -f -v sevgulnl/snl-vue'
-                    sh 'docker image inspect sevgulnl/snl-vue &&  docker image prune -f sevgulnl/snl-vue'
+                    sh 'docker stop $(docker ps -aqf "name=sevgulnl/snl-vue") docker container prune -f -v $(docker ps -aqf "name=sevgulnl/snl-vue")'
+                    sh 'docker image prune -f -v $(docker ps -aqf "name=sevgulnl/snl-vue")'
 
                     def appimage = docker.build registry + ":$BUILD_NUMBER"
                     docker.withRegistry( '', registryCredential ) {
