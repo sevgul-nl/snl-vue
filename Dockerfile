@@ -1,4 +1,5 @@
-FROM node:latest
+#FROM node:latest
+FROM buildpack-deps:bullseye
 #RUN npm install -g http-server
 WORKDIR /app
 COPY package*.json ./
