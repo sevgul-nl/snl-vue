@@ -30,8 +30,8 @@ pipeline {
                 script {
                     checkout scm
                     def appimage = docker.build("snl-vue:${env.BUILD_ID}")
-                        customImage.push()
-                    customImage.push('latest')
+                    appimage.push()
+                    appimage.push('latest')
                 }
             }
         }
