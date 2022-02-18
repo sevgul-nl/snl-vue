@@ -40,5 +40,8 @@ pipeline {
                 }
             }
         }
+        stage('Run image') {
+            sh runimage.txt
+        }
     }
 }
