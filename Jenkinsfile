@@ -1,6 +1,7 @@
 pipeline {
     agent any
     environment {
+        registry = 'sevgulnl/snl-vue'
         HOME = '.'
     }
 
@@ -26,12 +27,16 @@ pipeline {
             }
         }
         stage('Publish') {
+            environment {
+                registryCredential = 'dockerhub'
+            }
             steps {
                 script {
-                    checkout scm
-                    def appimage = docker.build("snl-vue:${env.BUILD_ID}")
-                    appimage.push()
-                    appimage.push('latest')
+                    def appimage = docker.build registry + ":$BUILD_NUMBER"
+                    docker.withRegistry( '', registryCredential ) {
+                        appimage.push()
+                        appimage.push('latest')
+                    }
                 }
             }
         }
