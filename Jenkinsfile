@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     sh 'docker container inspect sevgulnl/snl-vue && docker container prune -f -v sevgulnl/snl-vue'
-                    sh 'docker imapge inspect sevgulnl/snl-vue &&  docker images prune -f sevgulnl/snl-vue'
+                    sh 'docker image inspect sevgulnl/snl-vue &&  docker images prune -f sevgulnl/snl-vue'
 
                     def appimage = docker.build registry + ":$BUILD_NUMBER"
                     docker.withRegistry( '', registryCredential ) {
