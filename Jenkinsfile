@@ -41,8 +41,10 @@ pipeline {
             }
         }
         stage('Run') {
-            script {
-                sh 'docker run -d -p 8010:8010 --rm --name snl-vue sevgulnl/snl-vue'
+            steps {
+                script {
+                    sh 'docker run -d -p 8010:8010 --rm --name snl-vue sevgulnl/snl-vue'
+                }
             }
         }
     }
