@@ -32,9 +32,8 @@ pipeline {
             }
             steps {
                 script {
-                    sh '[ "$(docker ps -a | grep sevgulnl/snl-vue)" ] && docker stop $(docker ps -a -q | grep "sevgulnl/snl-vue")'
-                    sh 'docker rm -v sevgulnl/snl-vue'
-                    sh '[ "$(docker ps -a | grep sevgulnl/snl-vue)" ] &&  docker images -a |  grep "sevgulnl/snl-vue"'
+                    sh 'docker container inspect sevgulnl/snl-vue && docker container prune -f -v sevgulnl/snl-vue'
+                    sh 'docker imapge inspect sevgulnl/snl-vue &&  docker images prune -f sevgulnl/snl-vue'
 
                     def appimage = docker.build registry + ":$BUILD_NUMBER"
                     docker.withRegistry( '', registryCredential ) {
