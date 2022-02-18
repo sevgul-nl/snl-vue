@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --openssl-legacy-provider build",
+    "build": "vue-cli-service --openssl-legacy-provider build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "test": "npm run lint && npm run test:unit"
