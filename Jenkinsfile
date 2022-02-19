@@ -1,5 +1,5 @@
 pipeline {
-    agent {  docker {  image 'node' }  }
+    agent {  docker {  image 'node:16.13.2' }  }
     environment {
         registry = 'sevgulnl/snl-vue'
         HOME = '.'
