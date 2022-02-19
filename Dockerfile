@@ -7,5 +7,5 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-EXPOSE 8018
+EXPOSE 8010
 CMD [ "http-server", "dist" ]

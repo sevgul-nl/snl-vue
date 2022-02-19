@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             agent {
                 docker {
-                    image 'node:16.13.2'
+                    image 'node:16'
                 }
             }
             steps {
@@ -19,7 +19,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'node:16.13.2'
+                    image 'node:16'
                 }
             }
             steps {  sh 'npm run test'  }
