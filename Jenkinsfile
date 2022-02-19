@@ -3,12 +3,11 @@ pipeline {
         registry = 'sevgulnl/snl-vue'
         HOME = '.'
     }
-
     stages {
         stage('Build') {
             agent {
                 docker {
-                    image 'node'
+                    image 'node:16.13.2'
                 }
             }
             steps {
@@ -19,7 +18,7 @@ pipeline {
         stage('Test') {
             agent {
                 docker {
-                    image 'node'
+                    image 'node:16.13.2'
                 }
             }
             steps {  sh 'npm run test'  }
