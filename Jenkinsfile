@@ -19,7 +19,6 @@ pipeline {
             environment {   registryCredential = 'dockerhub'  }
             steps {
                 script {
-                    sh 'cd dist'
                     //sh 'docker stop $(docker ps -aqf "name=sevgulnl/snl-vue") && docker container prune -f -v $(docker ps -aqf "name=sevgulnl/snl-vue")'
                     //sh 'docker image prune -f -v $(docker ps -aqf "name=sevgulnl/snl-vue")'
 
