@@ -1,4 +1,5 @@
 pipeline {
+    agent any
     environment {
         registry = 'sevgulnl/snl-vue'
         HOME = '.'
