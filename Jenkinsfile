@@ -1,5 +1,4 @@
 pipeline {
-    agent {  docker {  image 'node:16.13.2' }  }
     environment {
         registry = 'sevgulnl/snl-vue'
         HOME = '.'
@@ -7,12 +6,22 @@ pipeline {
 
     stages {
         stage('Build') {
+            agent {
+                docker {
+                    image 'node'
+                }
+            }
             steps {
                 sh 'npm install'
                 sh 'npm run build'
             }
         }
         stage('Test') {
+            agent {
+                docker {
+                    image 'node'
+                }
+            }
             steps {  sh 'npm run test'  }
         }
         stage('Publish') {
