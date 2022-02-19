@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {  docker {  image 'node' }  }
     environment {
         registry = 'sevgulnl/snl-vue'
         HOME = '.'
@@ -7,31 +7,19 @@ pipeline {
 
     stages {
         stage('Build') {
-            agent {
-                docker {
-                    image 'node'
-                }
-            }
             steps {
                 sh 'npm install'
+                sh 'npm run build'
             }
         }
         stage('Test') {
-            agent {
-                docker {
-                    image 'node'
-                }
-            }
-            steps {
-                sh 'npm run test'
-            }
+            steps {  sh 'npm run test'  }
         }
         stage('Publish') {
-            environment {
-                registryCredential = 'dockerhub'
-            }
+            environment {   registryCredential = 'dockerhub'  }
             steps {
                 script {
+                    sh 'cd dist'
                     //sh 'docker stop $(docker ps -aqf "name=sevgulnl/snl-vue") && docker container prune -f -v $(docker ps -aqf "name=sevgulnl/snl-vue")'
                     //sh 'docker image prune -f -v $(docker ps -aqf "name=sevgulnl/snl-vue")'
 
@@ -43,12 +31,12 @@ pipeline {
                 }
             }
         }
-        //stage('Run') {
-        //   steps {
-        //        script {
-        //            sh 'docker run -d -p 8010:8010 --rm --name snl-vue sevgulnl/snl-vue'
-        //        }
-        //    }
-        //}
+    //stage('Run') {
+    //   steps {
+    //        script {
+    //            sh 'docker run -d -p 8010:8010 --rm --name snl-vue sevgulnl/snl-vue'
+    //        }
+    //    }
+    //}
     }
 }
